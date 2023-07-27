@@ -1,0 +1,13 @@
+config:
+  target: 'http://localhost:3001'
+  phases:
+    - duration: 10
+      arrivalRate: 1
+
+scenarios:
+  - name: 'Find all contacts'
+    flow:
+      - get:
+          url: '/contacts'
+          expect:
+            - statusCode: 200
