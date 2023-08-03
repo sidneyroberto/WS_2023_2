@@ -2,12 +2,16 @@ config:
   target: 'http://localhost:3001'
   phases:
     - duration: 10
-      arrivalRate: 1
+      arrivalRate: 100
+  variables:
+    name: 'oliveira'
+    page: 1
+    perPage: 1000
 
 scenarios:
   - name: 'Find all contacts'
     flow:
       - get:
-          url: '/contacts'
+          url: '/contacts/name/{{name}}?page={{page}}&perPage={{perPage}}'
           expect:
             - statusCode: 200
