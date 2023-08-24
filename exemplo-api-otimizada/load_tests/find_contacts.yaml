@@ -6,7 +6,7 @@ config:
   variables:
     name: 'oliveira'
     page: 1
-    perPage: 1000
+    perPage: 100
 
 scenarios:
   - name: 'Find all contacts'

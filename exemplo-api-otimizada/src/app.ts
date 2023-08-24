@@ -3,6 +3,7 @@ import express from 'express'
 import logger from 'morgan'
 import { connectToMongoDB } from './configs/db'
 import { contactsRouter } from './routes/contacts'
+import './configs/cache'
 
 connectToMongoDB()
 
