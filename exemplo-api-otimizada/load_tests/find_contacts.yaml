@@ -2,9 +2,9 @@ config:
   target: 'http://localhost:3001'
   phases:
     - duration: 10
-      arrivalRate: 100
+      arrivalRate: 350
   variables:
-    name: 'oliveira'
+    name: 'souza'
     page: 1
     perPage: 100
 
