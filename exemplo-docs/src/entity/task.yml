@@ -1,0 +1,26 @@
+components:
+  schemas:
+    Task:
+      type: object
+      required:
+        - description
+        - deadline
+        - severity
+      properties:
+        description:
+          type: string
+          description: Descrição da tarefa
+        deadline:
+          type: string
+          description: A data do prazo final para execução da tarefa
+        performed:
+          type: boolean
+          description: Flag indicando se a tarefa foi realizada ou não
+        severity:
+          type: number
+          description: Grau de severidade para execução da tarefa
+      example:
+        description: Lavar a louça
+        deadline: 2023-09-28
+        performed: false
+        severity: 1
