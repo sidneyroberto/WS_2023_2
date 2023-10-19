@@ -24,3 +24,32 @@ components:
         deadline: 2023-09-28
         performed: false
         severity: 1
+    TaskCreatedResponse:
+      allOf:
+        - $ref: "#components/schemas/Task"
+        - type: object
+          required:
+            - id
+          properties:
+            id:
+              type: number
+              description: O identificador da tarefa salva no banco de dados
+          example:
+            id: 1
+            description: Lavar a louça
+            deadline: 2023-09-28
+            performed: false
+            severity: 1
+    TaskCreationFailResponse:
+      type: object
+      properties:
+        errorMessages:
+          type: array
+          items:
+            type: string
+          example:
+            [
+              "Description cannot be empty",
+              "Deadline cannot be a past date",
+              "Invalid severity level"
+            ]
