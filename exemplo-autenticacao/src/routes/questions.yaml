@@ -1,0 +1,20 @@
+paths:
+  /questions:
+    get:
+      summary: Dá a resposta para a maior pergunta já feita pela humanidade
+      tags: [questions]
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: A resposta para a maior pergunta já feita pela humanidade
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  answer:
+                    type: string
+                    description: A resposta
+        401:
+          $ref: "#/components/responses/UnauthorizedError"

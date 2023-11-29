@@ -8,13 +8,15 @@ export const authRouter = Router()
 const authCtrl = new AuthController()
 
 authRouter.post('/register', async (req, res) => {
-  const { email, name, password } = req.body
+  const { email, fullname, password } = req.body
 
-  const user = new User(email, name, password)
+  const user = new User(fullname, email, password)
   const response = user.isValid()
 
   if (response === STATUS.OK) {
     const savedUser = await authCtrl.registerUser(user)
+    delete savedUser.hash
+    delete savedUser.salt
     return res.status(201).json({ user: savedUser })
   }
 

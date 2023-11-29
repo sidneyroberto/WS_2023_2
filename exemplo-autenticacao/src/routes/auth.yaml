@@ -1,0 +1,73 @@
+paths:
+  /auth/register:
+    post:
+      summary: Registra um novo usuário
+      tags: [auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        201:
+          description: The registered user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: "#components/schemas/UserCreatedResponse"
+        400:
+          description: Ocorre quando os dados informados são inválidos
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/UserCreationFailResponse"
+  /auth/login:
+    post:
+      summary: Autentica um usuário
+      tags: [auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/schemas/LoginCredentials"
+      responses:
+        200:
+          description: Usuário autenticado
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/LoginSucessResponse"
+        401:
+          description: Usuário não autenticado
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/LoginFailResponse"
+
+components:
+  schemas:
+    UserNotAuthorized:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Message informing that no user is not authorized to perform requested action
+      example:
+        message: User not authorized
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: "#components/schemas/UserNotAuthorized"

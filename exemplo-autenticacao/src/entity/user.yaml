@@ -1,0 +1,91 @@
+components:
+  schemas:
+    User:
+      type: object
+      required:
+      - fullname
+      - email
+      - password
+      properties:
+        fullname:
+          type: string
+          description: Nome completo do usuário
+        email:
+          type: string
+          description: E-mail do usuário
+        password:
+          type: string
+          description: Senha do usuário
+    UserCreatedResponse:
+      type: object
+      required:
+        - id
+        - fullname
+        - email
+      properties:
+        id:
+          type: number
+          description: Chave primária gerada automaticamente pelo banco de dados
+        name:
+          type: string
+          description: Nome completo do usuário
+        email:
+          type: string
+          description: E-mail do usuário
+    UserCreationFailResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            type: string
+          example:
+            [
+              "Invalid email",
+              "Invalid name",
+              "Invalid email",
+              "Password must contain at least 8 characters, 1 uppercase character, and 1 digit",
+              "An error occurred while trying to register the user"
+            ]
+    LoginCredentials:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          description: E-mail do usuário
+        password:
+          type: string
+          description: Senha do usuário
+    LoginSucessResponse:
+      type: object
+      properties:
+        authorized:
+          type: boolean
+          description: Informa se o usuário está autorizado
+        user:
+          type: object
+          properties:
+            id:
+              type: number
+              description: Chave primária do usuário
+            name:
+              type: string
+              description: Nome completo do usuário
+            email:
+              type: string
+              description: E-mail do usuário
+        token:
+          type: string
+          description: O token JWT do usuário autenticado
+    LoginFailResponse:
+      type: object
+      properties:
+        authorized:
+          type: boolean
+          description: Informa se o usuário está autorizado
+        message:
+          type: string
+          description: Mensagem informando que a autenticação falhou
